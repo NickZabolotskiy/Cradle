@@ -1,0 +1,13 @@
+Nick@Dell MINGW64 /d/GitProjects/Cradle (master)
+$ git log
+commit bcac170473d9fdd85d2778be5f1372768b866095
+Author: NickZabolotskiy <Nickzabolotskiy@gmail.com>
+Date:   Tue Feb 7 22:37:09 2017 +0300
+
+    add status.txt
+
+commit 66a58aa237dccda72c224eb82ff9d90c253a1745
+Author: NickZabolotskiy <Nickzabolotskiy@gmail.com>
+Date:   Tue Feb 7 22:29:02 2017 +0300
+
+    add .gitignore
