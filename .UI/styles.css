@@ -1,0 +1,176 @@
+        .header{
+            background-color: grey;
+            color: white;
+            min-width: 800px;
+        }
+        .logo{
+            background: url("http://www.fotohost.by/images/2017/02/24/logo2.png") no-repeat center center;
+            width: 800px;
+            height:150px;
+            margin: 1px auto;
+            background-size:500px;
+            display: block;
+
+        }
+
+        .content{
+            width: 83%;
+            float: left;
+        }
+        .space{
+            width: 1%;
+            float: left;
+        }
+        .filter{
+            width: 15%;
+            float: left;
+            background-color: black;
+            border-radius: 20px;
+            padding: 15px;
+        }
+
+        .news{
+            border: 50px;
+            margin: 0% 1% 12% 1%;
+            border-radius: 10px;
+            border: inset;
+            border-color: #e5e5e5;
+            background-color: white;
+        }
+        .picture{
+            background-color: black;
+            width: 100%;
+            height:10vw;
+            min-height: 85px;
+            display:block;
+        }
+        .text{
+            padding: 5px;
+            word-break:break-all;
+            border-bottom-style: inset;
+        }
+         .data{
+            float: left;
+            width: 32%;
+            padding: 10px;
+
+        }
+        .autor{
+            float: left;
+            width: 32%;
+            padding: 10px;
+
+        }
+        .getMore{
+            float: left;
+            width: 33%;
+            padding: 1.3%;
+            background-color: #919191;
+            border-radius: 20px;
+            color: black;
+        }
+        .getMore:hover{
+            background-color: #242424;
+            color: white;
+            border-radius: 20px;
+        }
+        .addNew{
+            background-color: #292929;
+            border-radius: 20px;
+        }
+        .addNew:hover{
+            background-color: #bdbdbd;
+            border-radius: 20px;
+        }
+
+        .footermenu{
+            width: 20%;
+            height: 70px;
+            float: left;
+            margin: 3px auto;
+            padding: 5px;
+            opacity: 0.9;
+
+        }
+
+        label {
+            width: 32px; /* Ширина рисунка */
+            height: 26px; /* Высота рисунка */
+            display: block; /* Блочный элемент */
+            position: relative; /* Относительное позиционирование */
+        }
+        input[type="checkbox"] + span {
+            position: absolute;
+            left: 0; top: 0;
+            width: 50px; height: 50px;
+            cursor: pointer;
+            background: url(http://www.fotohost.by/images/2017/02/26/cherboxes2.jpg)  no-repeat;
+            background-position: -8px 0px;
+            background-size:50px;
+
+        }
+        input[type="checkbox"]:checked + span  	{
+            background: url(http://www.fotohost.by/images/2017/02/26/cherboxes3.jpg) no-repeat;
+            background-position: 2px 0px;
+            background-size:50px;
+        }
+        .buttonF{
+            background-color: #242424;
+            border-radius: 20px;
+            width: 50%;
+            float: left;
+        }
+        .buttonF:hover{
+            background-color: #bdbdbd;
+            border-radius: 20px;
+        }
+
+
+        .rewrite{
+            float: left;
+            width: 50%;
+            opacity: 0.4;
+        }
+        .delete{
+            float: left;
+            width: 50%;
+            opacity: 0.4;
+        }
+        .rewrite:hover{
+            opacity: 1;
+        }
+        .delete:hover{
+            opacity: 1;
+        }
+
+        .footer{
+            background-color: grey;
+            left: 0;
+            right:0;
+            bottom: -20px;
+            height: 70px;
+            margin-top: -180px;
+            clear: both;
+            min-width: 800px;
+        }
+
+         body{
+            background: url("http://www.fotohost.by/images/2017/02/24/words2.jpg");
+            opacity: 0.8;
+            min-height: 100%;
+
+        }
+        *{ box-sizing: border-box; }
+         a{
+             font-size: 1.5vw;
+             align-items: center;
+         }
+         p{ font-size: 1vw; }
+         h1{font-size: 2vw}
+         h2{font-size: 5.5vw}
+         h3{font-size: 1.5vmin}
+        select{
+            width: 10vw;
+            height: 40px;
+            font-size: 1.5vw
+        }
