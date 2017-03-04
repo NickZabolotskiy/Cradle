@@ -1,3 +1,4 @@
+
 var articles = [
     {
         id: '1',
@@ -446,13 +447,11 @@ function getArticles(skip, top, filterConfig) {
 
     return  partOfArticals;
 }
-
 function getArticle(id) {
    for(var i=0; i<articles.length; i++){
        if(articles[i].id == id) return articles[i];
     }
 }
-
 function validateArticle(article) {
    if(typeof article != "object") return false;
 
@@ -481,13 +480,11 @@ function validateArticle(article) {
     }catch(e){ return false; }
     return true;
 }
-
 function addArticle(article){
     if(validateArticle(article))articles.push(article);
     else return false;
     return true;
 }
-
 function editArticle(id, article) {
     for(var i=0; i<articles.length; i++){
         if(articles[i].id == id) {
@@ -501,7 +498,6 @@ function editArticle(id, article) {
     }
     return false;
 }
-
 function removeArticle(id) {
     for(var i=0; i<articles.length; i++){
         if(articles[i].id == id) {
@@ -514,26 +510,106 @@ function removeArticle(id) {
 
 
 
+console.log("----- MAIN ARRAY ");
+console.log(articles);
+console.log(" ");
+
+
+console.log("----- filters + pagination ");
+console.log(getArticles(0,10,{title:"Nick"}));
 console.log(getArticles(0,10,{title:"bg"}));
+console.log(getArticles(10,10,{title:"NickZabolotskiy"}));
+console.log(getArticles(10,10,{title:"trt"}));
+console.log(getArticles(10,10));
+console.log(getArticles(10));
+console.log(getArticles());
 
+
+console.log(" ");
+console.log("----- get element ");
 console.log(getArticle('3'));
+console.log(getArticle('235'));
+console.log(getArticle(''));
+console.log(getArticle('rg'));
 
+
+console.log(" ");
+console.log("----- validate element ");
+console.log(validateArticle());
 console.log(validateArticle(
     {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
 ));
+console.log(validateArticle(
+    {id:'34',title:'',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+));
+console.log(validateArticle(
+    {title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+));
 
-console.log(addArticle(
-    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
-    ));
+console.log(validateArticle(
+    {id:'34',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+));
 
-console.log(editArticle(23,
-    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+console.log(validateArticle(
+    {id:'34',title:'titleTemp',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+));
+
+console.log(validateArticle(
+    {id:'34',title:'titleTemp',summary:'someSummary',author:'ItsIam',content:'SomeContent'}
+));
+console.log(validateArticle(
+    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('ItsNotDate'),author:'ItsIam',content:'SomeContent'}
+));
+
+console.log(validateArticle(
+    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),content:'SomeContent'}
+));
+console.log(validateArticle(
+    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'',content:'SomeContent'}
+));
+console.log(validateArticle(
+    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam'}
+));
+console.log(validateArticle(
+    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:''}
 ));
 
 
-console.log(removeArticle(4));
+console.log(" ");
+console.log("----- add element ");
+console.log(addArticle(
+    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+));
+console.log(addArticle(
+    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('someThing'),author:'ItsIam',content:'SomeContent'}
+));
+console.log(addArticle(
+    {id:'34',title:'',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+));
+console.log(addArticle( ));
 
-console.log(articles)
+
+console.log(" ");
+console.log("----- edit element ");
+console.log(editArticle(12,
+    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+));
+console.log(editArticle(32,
+    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+));
+console.log(editArticle(12,
+    {id:'10',title:'titleTemp',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+));
+console.log(editArticle(12,
+    {id:'34',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+));
+
+
+console.log(" ");
+console.log("----- remove element ");
+console.log(removeArticle(4));
+console.log(removeArticle(12));
+console.log(removeArticle('evfe'));
 
 
 
