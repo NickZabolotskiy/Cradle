@@ -90,7 +90,7 @@ var articles = [
         summary: 'Кроме Алексиевич упоминаются и другие кандидатуры. Например, в качестве возможного преемника ' +
         'нынешнего руководства союза называют Всеволода Стебурако. "Ну, а почему нет?...',
 
-        createdAt: new Date('2016-05-30T19:22:11'),
+        createdAt: new Date('2016-04-12T21:42:05'),
 
         author: 'NickZ',
 
@@ -132,7 +132,7 @@ var articles = [
         summary: 'ПВТ не выполнил план по экспорту IT-услуг в 2016 году в $1 млрд. Это и стало официальной причиной' +
         ' отставки главы Парка высоких технологий Валерия Цепкало. Напомним, в апреле прошлого года Цепкало...',
 
-        createdAt: new Date('2016-01-22T23:51:23'),
+        createdAt: new Date('2016-04-12T21:42:05'),
 
         author: 'NickZabolotskiy',
 
@@ -154,7 +154,7 @@ var articles = [
         summary: 'В конце февраля руководитель «Минскоблдорстроя» Денис Степанов предложил пересмотреть систему сбора' +
         ' транспортного налога и включать его в стоимость топлива, объяснив это тем...',
 
-        createdAt: new Date('2017-02-19T13:12:20'),
+        createdAt: new Date('2016-04-12T21:42:05'),
 
         author: 'NickZ',
 
@@ -427,33 +427,35 @@ var articles = [
     },
 ];
 
+
 function getArticles(skip, top, filterConfig) {
     if(skip == undefined) skip =0;
     if(top == undefined) top =10;
 
-    articles.sort(function (a, b) {
-        if (a.createdAt - b.createdAt < 0) {return 1;}
-        else {return - 1;}
-    });
-
+    var select = articles;
     if(filterConfig != undefined && filterConfig.author != undefined) {
-        var partOfArticals = articles.filter(function (a) {
+        select = select.filter(function (a) {
             if (a.author == filterConfig.author) return true;
             else return false;
-        }).slice(skip, skip + top);
-    }else{
-        var partOfArticals = articles.slice(skip, skip + top);
+        });
     }
 
-    return  partOfArticals;
+    if(filterConfig != undefined && filterConfig.createdAt != undefined) {
+        select = select.filter(function (a) {
+            if (a.createdAt - filterConfig.createdAt == 0) return true;
+            else return false;
+        });
+    }
+    select.sort(function (a, b) { return b.createdAt - a.createdAt; });
+    return  select.slice(skip, skip + top);
 }
 function getArticle(id) {
-   for(var i=0; i<articles.length; i++){
-       if(articles[i].id == id) return articles[i];
+    for(var i=0; i<articles.length; i++){
+        if(articles[i].id == id) return articles[i];
     }
 }
 function validateArticle(article) {
-   if(typeof article != "object") return false;
+    if(typeof article != "object") return false;
 
     if(typeof article.id != "string") return false;
 
@@ -481,19 +483,31 @@ function validateArticle(article) {
     return true;
 }
 function addArticle(article){
-    if(validateArticle(article))articles.push(article);
+    if(validateArticle(article)) {
+        for (var i = 0; i < articles.length; i++)  if (articles[i].id == article.id) return false;
+        articles.push(article);
+    }
     else return false;
     return true;
 }
 function editArticle(id, article) {
     for(var i=0; i<articles.length; i++){
         if(articles[i].id == id) {
-           if(validateArticle(articles[i])) {
-               if(typeof article.title =="string") articles[i].title = article.title;
-               if(typeof article.summary == "string") articles[i].summary= article.summary;
-               if(typeof article.content == "string") articles[i].content = article.content;
-               return true;
-           }
+            if(validateArticle(articles[i])) {
+                if(typeof article.title =="string"){
+                    if( article.title.length >= 100 || article.title.length == 0) return false;
+                    articles[i].title = article.title;
+                }
+                if(typeof article.summary == "string"){
+                    if( article.summary.length>=200) return false;
+                    articles[i].summary= article.summary;
+                }
+                if(typeof article.content == "string") {
+                    if( article.content.length ==0) return false;
+                    articles[i].content = article.content;
+                }
+                return true;
+            }
         }
     }
     return false;
@@ -501,8 +515,8 @@ function editArticle(id, article) {
 function removeArticle(id) {
     for(var i=0; i<articles.length; i++){
         if(articles[i].id == id) {
-           articles.splice(i,1);
-           return true;
+            articles.splice(i,1);
+            return true;
         }
     }
     return false;
@@ -510,66 +524,102 @@ function removeArticle(id) {
 
 
 
+
+
 console.log("----- MAIN ARRAY ");
 console.log(articles);
+
+
 console.log(" ");
-
-
 console.log("----- filters + pagination ");
-console.log(getArticles(0,10,{title:"Nick"}));
-console.log(getArticles(0,10,{title:"bg"}));
-console.log(getArticles(10,10,{title:"NickZabolotskiy"}));
-console.log(getArticles(10,10,{title:"trt"}));
+
+console.log("||||| first 10 - filter: Nick");
+console.log(getArticles(0,10,{author:"Nick"}));
+console.log("|||||   first 10 - filter: bg");
+console.log(getArticles(0,10,{author:"bg"}));
+
+console.log("|||||   first 10 - filter: 2016-04-12T21:42:05");
+console.log(getArticles(0,10,{createdAt: new Date('2016-04-12T21:42:05')}));
+
+console.log("|||||   first 10 - filter: 2016-04-12T21:42:05  and NickZabolotskiy");
+console.log(getArticles(0,10,{author:"NickZabolotskiy", createdAt: new Date('2016-04-12T21:42:05')}));
+
+console.log("|||||   second 10 - filter: trt");
+console.log(getArticles(10,10,{author:"trt"}));
+
+console.log("|||||   first 10 - filter: NickZ");
+console.log(getArticles(0,10,{author:"NickZ"}));
+console.log("|||||   second 10 - filter: NickZ");
+console.log(getArticles(10,10,{author:"NickZ"}));
+
+console.log("|||||   only second 10");
 console.log(getArticles(10,10));
+
+console.log("|||||   fisrt 10");
 console.log(getArticles(10));
+
+console.log("|||||   without arguments");
 console.log(getArticles());
+
 
 
 console.log(" ");
 console.log("----- get element ");
+console.log("|||||   id  = 3");
 console.log(getArticle('3'));
+console.log("|||||   id  = 235");
 console.log(getArticle('235'));
+console.log("|||||   id  = '' ");
 console.log(getArticle(''));
+console.log("|||||   id  = 'rg' ");
 console.log(getArticle('rg'));
 
 
 console.log(" ");
 console.log("----- validate element ");
+console.log("|||||   empty structure");
 console.log(validateArticle());
+console.log("|||||   normal structure");
 console.log(validateArticle(
     {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
 ));
+console.log("|||||   with zero title");
 console.log(validateArticle(
     {id:'34',title:'',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
 ));
+console.log("|||||   without id");
 console.log(validateArticle(
     {title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
 ));
-
+console.log("|||||   without title");
 console.log(validateArticle(
     {id:'34',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
 ));
-
+console.log("|||||   without summary");
 console.log(validateArticle(
     {id:'34',title:'titleTemp',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
 ));
-
+console.log("|||||   without date");
 console.log(validateArticle(
     {id:'34',title:'titleTemp',summary:'someSummary',author:'ItsIam',content:'SomeContent'}
 ));
+console.log("|||||   with bad date");
 console.log(validateArticle(
     {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('ItsNotDate'),author:'ItsIam',content:'SomeContent'}
 ));
-
+console.log("|||||   without author");
 console.log(validateArticle(
     {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),content:'SomeContent'}
 ));
+console.log("|||||   with zero author");
 console.log(validateArticle(
     {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'',content:'SomeContent'}
 ));
+console.log("|||||   without conetnt");
 console.log(validateArticle(
     {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam'}
 ));
+console.log("|||||   with zero content");
 console.log(validateArticle(
     {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:''}
 ));
@@ -577,39 +627,48 @@ console.log(validateArticle(
 
 console.log(" ");
 console.log("----- add element ");
+console.log("|||||   normal structure");
 console.log(addArticle(
     {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
 ));
+console.log("|||||   wiht bad data");
 console.log(addArticle(
-    {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('someThing'),author:'ItsIam',content:'SomeContent'}
+    {id:'85',title:'titleTemp',summary:'someSummary',createdAt: new Date('someThing'),author:'ItsIam',content:'SomeContent'}
 ));
+console.log("|||||   with bad title");
 console.log(addArticle(
-    {id:'34',title:'',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+    {id:'74',title:'',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
 ));
+console.log("|||||   with ID what already exist");
+console.log(addArticle(
+    {id:'4',title:'titleTemp2',summary:'SecondsomeSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIamNick',content:'SomeSomeContent'}
+));
+console.log("|||||   empty structure");
 console.log(addArticle( ));
 
 
 console.log(" ");
 console.log("----- edit element ");
+console.log("|||||   rebuild 12-th element: content:'SomeContent',title:'titleTemp',summary:'someSummary' ");
 console.log(editArticle(12,
     {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
 ));
+console.log("|||||   rebuild element what no exist: ID = 32");
 console.log(editArticle(32,
     {id:'34',title:'titleTemp',summary:'someSummary',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
 ));
-console.log(editArticle(12,
-    {id:'10',title:'titleTemp',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
+console.log("|||||   rebuild no valid element ");
+console.log(editArticle(14,
+    {id:'10',title:'',createdAt: new Date('tratata'),author:'ItsIam',content:'SomeContent'}
 ));
-console.log(editArticle(12,
-    {id:'34',createdAt: new Date('1991-08-15T23:12:44'),author:'ItsIam',content:'SomeContent'}
-));
+
 
 
 console.log(" ");
 console.log("----- remove element ");
+console.log("|||||   remove element winh ID = 4");
 console.log(removeArticle(4));
-console.log(removeArticle(12));
+console.log("|||||   remave element winh ID = evfe");
 console.log(removeArticle('evfe'));
-
-
-
+console.log("|||||   remove element winh ID = ''");
+console.log(removeArticle(''));
