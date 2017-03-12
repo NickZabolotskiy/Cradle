@@ -16,10 +16,12 @@
 .content{
     width: 83%;
     float: left;
+    margin: 20px 0.3%  20px 0.1%;
 }
 .space{
     width: 1%;
     float: left;
+    margin: 20px 0.3% 20px 0px;
 }
 .filter{
     width: 15%;
@@ -27,8 +29,13 @@
     background-color: #111111;
     border-radius: 20px;
     padding: 15px;
+    margin: 20px 0.3% 20px 0px;
 }
 
+.block-news{
+    float: left;width: 31%;
+    margin: 3% 0%3% 1%;
+}
 .news{
     border: 50px;
     margin: 0% 1% 12% 1%;
@@ -41,7 +48,7 @@
     background-color: black;
     width: 100%;
     height:10vw;
-    min-height: 85px;
+    //min-height: 85px;
     display:block;
 }
 .text{
@@ -51,33 +58,40 @@
 }
 .data{
     float: left;
-    width: 25%;
+    width: 30%;
     padding: 10px;
+    margin: 0 .3% 0 0.1%;
+    word-break:break-all;
 }
 .autor{
     float: left;
-    width: 25%;
+    width: 30%;
     padding: 10px;
+    margin: 0 .3% 0 0;
+    word-break:break-all;
 }
-.getMore{
+.get-more{
     float: left;
     width: 38%;
     background-color: #919191;
     border-radius: 10px;
     color: black;
+    margin: 3% .3% 0 0;
+    cursor: pointer;
 }
-.getMore:hover{
+.get-more:hover{
     background-color: #242424;
     color: white;
     border-radius: 20px;
 }
-.addNew{
+.add-new{
     background-color: #474747;
     border-radius: 20px;
 }
-.addNew:hover{
+.add-new:hover{
     background-color: #bdbdbd;
     border-radius: 20px;
+
 }
 
 .footermenu{
@@ -110,15 +124,20 @@ input[type="checkbox"]:checked + span  	{
     background-position: 2px 0px;
     background-size:50px;
 }
-.buttonF{
+.button-f{
     background-color: #474747;
     border-radius: 20px;
     width: 50%;
     float: left;
+    cursor: pointer;
 }
-.buttonF:hover{
+.button-f:hover{
     background-color: #bdbdbd;
     border-radius: 20px;
+}
+.button-sp{
+    width: 50%;
+    float: left;
 }
 
 .handle{
@@ -129,16 +148,18 @@ input[type="checkbox"]:checked + span  	{
 }
 
 .rewrite{
-    width: 100%;
     opacity: 0.4;
     float: left;
     width: 5%;
+    margin: 3% .3% 0 0;
+    cursor: pointer;
 }
 .delete{
-    width: 100%;
     opacity: 0.4;
     float: left;
     width: 5%;
+    margin: 3%  2% 0 1.3%;
+    cursor: pointer;
 }
 .rewrite:hover{
     opacity: 1;
@@ -154,6 +175,10 @@ input[type="checkbox"]:checked + span  	{
     border-radius: 10px;
 
 }
+.paginspace{
+    width: 45%;
+    float: left;
+}
 .footer{
     background-color: grey;
     left: 0;
@@ -163,6 +188,10 @@ input[type="checkbox"]:checked + span  	{
     margin-top: -180px;
     clear: both;
     min-width: 800px;
+}
+.toolspace{
+    float: left;
+    width: 86%;
 }
 
 body{
@@ -176,13 +205,41 @@ a{
     font-size: 1vw;
     align-items: center;
 }
-p{font-size: 1vw; }
+a2{
+    text-decoration: none;
+    color: white;
+    font-size: 1.3vw;
+}
+a3{
+    text-decoration: none;
+    color: white;
+    font-size: 3vw;
+}
+p{
+    font-size: 1vw;
+    color: black;
+}
+p2{
+    color: white;
+    font-size: 1.5vw;
+}
+p3{
+    float: left;
+}
+p4{
+    color: black;
+    font-size: 1.4vw;
+}
 
 h1{font-size: 2vw}
-h2{font-size: 3vw}
+h2{
+    font-size: 3vw;
+    color: white;
+}
 h3{font-size: 1.5vmin}
 select{
     width: 10vw;
     height: 40px;
-    font-size: 1vw
+    font-size: 1vw;
 }
+
