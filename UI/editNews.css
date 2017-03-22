@@ -1,0 +1,50 @@
+.editcontent{
+    height: 40vh;
+}
+.editspacetwo{
+    height: 36vh;
+}
+
+.editbutton{
+    width: 80%;
+    margin: 5vh 0 5vh 0;
+    height: 6vh;
+    background-color: #fffe85;
+    border-radius: 20px;
+    opacity: 0.8;
+    float: left;
+}
+.editbutton:hover{
+    background-color: #fffb48;
+}
+
+.edithandleNews{
+    width:  38vw;
+    height: 12vh;
+    padding: 5px 10px 5px 10px;
+    border:1px solid #1d1d1d;
+    font-size: 3vmin;
+    border-radius: 20px;
+    resize: none;
+}
+.editsummaryNews{
+    width:  38vw;
+    height: 17vh;
+    padding: 5px 10px 5px 10px;
+    border:1px solid #0f0f0f;
+    border-radius: 20px;
+    font-size: 2vmin;
+    resize: none;
+}
+.editfulltextNews{
+    width:  40vw;
+    height: 60vh;
+    padding: 5px 10px 5px 10px;
+    border:1px solid #0f0f0f;
+    border-radius: 20px;
+    font-size: 2vmin;
+    resize: none;
+}
+
+
+

@@ -1,0 +1,28 @@
+.registrspaceone{
+    height: 15vh;
+}
+.registrcontent{
+    height: 32vh;
+}
+.registrspacetwo{
+    height: 29vh;
+}
+input.text {
+    width:  25vw;
+    height: 5vh;
+    padding: 5px 10px 5px 10px;
+    border:1px solid #999;
+    font-size: 3vh;
+}
+.registrbutton{
+    width: 45%;
+    margin: 5vh 0 0 0;
+    height: 6vh;
+    background-color: #fffe85;
+    border-radius: 20px;
+}
+.registrbutton:hover{
+    background-color: #fffb48;
+}
+
+

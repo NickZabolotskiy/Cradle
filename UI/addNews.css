@@ -1,0 +1,64 @@
+.addhandleNews{
+    width:  40vw;
+    height: 12vh;
+    padding: 5px 10px 5px 10px;
+    border:1px solid #1d1d1d;
+    font-size: 3vmin;
+    border-radius: 20px;
+    resize: none;
+}
+.addsummaryNews{
+    width:  38vw;
+    height: 17vh;
+    padding: 5px 10px 5px 10px;
+    border:1px solid #0f0f0f;
+    border-radius: 20px;
+    font-size: 2vmin;
+    resize: none;
+}
+.addfulltextNews{
+    width:  40vw;
+    height: 70vh;
+    padding: 5px 10px 5px 10px;
+    border:1px solid #0f0f0f;
+    border-radius: 20px;
+    font-size: 2vmin;
+    resize: none;
+}
+
+
+.addauthorNews{
+    width:  18vw;
+    height: 4vh;
+    padding: 5px 10px 5px 10px;
+    border:1px solid #0f0f0f;
+    border-radius: 20px;
+    font-size: 2vmin;
+    resize: none;
+}
+.adddataNews{
+    width:  18vw;
+    height: 4vh;
+    padding: 5px 10px 5px 10px;
+    border:1px solid #0f0f0f;
+    border-radius: 20px;
+    font-size: 2vmin;
+    resize: none;
+}
+
+.addnews{
+    min-width: 500px;
+}
+
+.addbutton{
+    width: 45%;
+    margin: 5vh 0 5vh 0;
+    height: 20vh;
+    background-color: #fffe85;
+    border-color: #020202;
+    border-radius: 100px;
+    float: left;
+}
+.addbutton:hover{
+    background-color: #fffb48;
+}
