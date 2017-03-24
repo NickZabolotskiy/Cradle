@@ -18,15 +18,13 @@
 }
 .addfulltextNews{
     width:  40vw;
-    height: 70vh;
+    height: 75vh;
     padding: 5px 10px 5px 10px;
     border:1px solid #0f0f0f;
     border-radius: 20px;
     font-size: 2vmin;
     resize: none;
 }
-
-
 .addauthorNews{
     width:  18vw;
     height: 4vh;
@@ -45,11 +43,9 @@
     font-size: 2vmin;
     resize: none;
 }
-
 .addnews{
     min-width: 500px;
 }
-
 .addbutton{
     width: 45%;
     margin: 5vh 0 5vh 0;
@@ -61,4 +57,15 @@
 }
 .addbutton:hover{
     background-color: #fffb48;
+}
+.errorbutton{
+    margin: 15vh 25vw 0 25vw;
+    background-color: #fffe85;
+    border-radius: 50px;
+    padding: 5px;
+    opacity: 0.6;
+}
+.errorbutton:hover{
+    background-color: #fffb48;
+    opacity: 0.8;
 }

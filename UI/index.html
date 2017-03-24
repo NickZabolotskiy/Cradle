@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="editNews.css">
     <link rel="stylesheet" href="addNews.css">
     <link rel="stylesheet" href="fullNews.css">
+    <link rel="stylesheet" href="errorPage.css">
     <script src="script.js"></script>
+    <script src="saver.js"></script>
 </head>
 
 <body>
 
-    <div class  =  "header">
+    <div class="header">
         <div class = "logo">
             <div style = "float: right";>
                 <p3> <font size="5"> </font> </p3>
@@ -342,6 +344,8 @@
                 <textarea class="edithandleNews" maxlength=57 align="center"> Заголовок </textarea>
                 <h2 style="  font-size: 5vh">краткое содержание</h2>
                 <textarea class="editsummaryNews" maxlength=192 style="font-size: 2vmin;"align="center"> краткое содержание </textarea>
+                <h2 style="  font-size: 5vh; width: 30%; float: left">ID&#160</h2>;
+                <h2 style="  font-size: 5vh; width: 30%; float: left"></h2>;
             </div>
 
             <div style="width: 2%;float:left"> &#160</div>
@@ -369,10 +373,11 @@
         <div style="width: 5%;float:left"> &#160</div>
 
         <div style="width: 44%;float:left">
+            <h2 style="  font-size: 5vh">ID: ##</h2>
             <h2 style="  font-size: 5vh">заголовок</h2>
-            <textarea class="addhandleNews" maxlength=57 align="center"> Заголовок </textarea>
+            <textarea class="addhandleNews" maxlength=57 align="center" quired> Заголовок </textarea>
             <h2 style="  font-size: 5vh">краткое содержание</h2>
-            <textarea class="addsummaryNews" maxlength=192 style="font-size: 2vmin;"align="center"> краткое содержание </textarea>
+            <textarea class="addsummaryNews" maxlength=192 style="font-size: 2vmin;"align="center" quired> краткое содержание </textarea>
 
             <div style="float: left; width: 20%"> &#160</div>
             <div class="addbutton"; onclick = "return domService.loadNew()">
@@ -384,17 +389,7 @@
 
         <div style="width: 44%;float:left">
             <h2 style="  font-size: 5vh">полный текст</h2>
-            <textarea class="addfulltextNews" style="font-size: 2vmin;"align="center"> полный текст </textarea>
-
-            <!--<div style="width: 50%;float:left">-->
-                <!--<h2 style="  font-size: 3vh">автор</h2>-->
-                <!--<textarea class="addauthorNews" maxlength=30 align="center"> автор </textarea>-->
-            <!--</div>-->
-            <!--<div style="width: 50%;float:left">-->
-                <!--<h2 style="  font-size: 3vh">дата</h2>-->
-                <!--<textarea class="adddataNews" maxlength=30 align="center"> дата </textarea>-->
-            <!--</div>-->
-
+            <textarea class="addfulltextNews" style="font-size: 2vmin;"align="center" quired> полный текст </textarea>
         </div>
 
         <div style="width: 5%;float:left">  &#160</div>
@@ -406,7 +401,9 @@
             <div style="width: 30%;float:left"> &#160</div>
             <div style="width: 30%;float:left">
                 <h2 style="  font-size: 5vh">ваш логин</h2>
-                <input type="text" class="text" name="" />
+                <input type="text" quired class="text" name="" />
+                <h2 style="  font-size: 5vh">ваш пароль</h2>
+                <input type="text" quired class="text" name="" />
                 <div class="registrbutton"; onclick = "return domService.regName()">
                     <p style="font-size: 4vmin;"align="center"><strong>войти</strong></p>
                 </div>
@@ -438,14 +435,37 @@
             </div>
             </div>
         <div class = "fullfilter">
-            <div class = "returnbutton"  onclick = "return  domService.fromnewstomain()">
-                <p align="center" style="; margin: 50% 0 0 0">
-                    <a title="показать больше" style="text-decoration: none; color: black; font-size: 3vmin">
+            <div class = "returnbutton"  onclick = "return  domService.toIndex()">
+                <p align="center" style="; margin: 15% 0 0 0">
+                    <a title="показать больше" style="text-decoration: none; color: white; font-size: 3vmin">
                        <strong>вернуться назад</strong>
                     </a>
                 </p>
             </div>
+
+            <div class = "returnbutton"  onclick = "return  domService.fromFullToEdit()">
+                <p align="center" style="; margin: 15% 0 0 0; color: white;">
+                    <a title="показать больше" style="text-decoration: none; color: white; font-size: 3vmin">
+                        <strong>изменить</strong>
+                    </a>
+                </p>
+            </div>
+
+            <div class = "returnbutton"  onclick = "return  domService.deleteFromFull()">
+                <p align="center" style="; margin: 15% 0 0 0; color: white;">
+                    <a title="показать больше" style="text-decoration: none; color: white; font-size: 3vmin">
+                        <strong>удалить</strong>
+                    </a>
+                </p>
+            </div>
+
         </div>
+    </div>
+
+    <div class="errorpage" style="margin: 15vh 15vw 14vh 15vw">
+            <h1 style="font-size: 10vmin; color: white"align="center"> Что-то пошло не так </h1>
+            <h1 style="font-size: 7vmin; color: #d7d7d7" align="center"></h1>
+            <div class="errorbutton" onclick="return domService.toIndex()"> <p style="font-size: 3vw; margin: 0 0 0 0" align="center">к новостям</p></div>
     </div>
     <div class="footer">
         <div class = "footermenu">

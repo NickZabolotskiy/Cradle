@@ -4,7 +4,6 @@
 .editspacetwo{
     height: 36vh;
 }
-
 .editbutton{
     width: 80%;
     margin: 5vh 0 5vh 0;
@@ -17,7 +16,6 @@
 .editbutton:hover{
     background-color: #fffb48;
 }
-
 .edithandleNews{
     width:  38vw;
     height: 12vh;

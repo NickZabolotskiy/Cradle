@@ -10,7 +10,6 @@
     background-color: black;
     width: 100%;
     height:10vw;
-//min-height: 85px;
     display:block;
 }
 .fulltext{
@@ -32,16 +31,14 @@
     margin: 0 .3% 0 0;
     word-break:break-all;
 }
-
 .returnbutton{
-    opacity: 0.8;
     float: left;
     width: 90%;
-    height: 30vh;
-    background-color: #fffe85;
+    height: 10vh;
+    background-color: #6d6d6d;
     border-radius: 10px;
     color: black;
-    margin: 80% 5% 0 5%;
+    margin: 50% 5% 0 5%;
 }
 .returnbutton:hover{
     background-color:  #fffb48;
@@ -57,7 +54,6 @@
     padding: 15px;
     margin: 20px 0.3% 20px 0px;
 }
-
 .fulldata{
     float: left;
     width: 49%;
