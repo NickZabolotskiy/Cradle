@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zonal news</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="registration.css">
+    <link rel="stylesheet" href="editNews.css">
+    <link rel="stylesheet" href="addNews.css">
+    <link rel="stylesheet" href="fullNews.css">
+    <link rel="stylesheet" href="errorPage.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class = "logo">
+            <div style = "float: right">
+                <p3> <font size="5"> </font> </p3>
+                <p3>&#160</p3>
+                <p3> <font size="5">  </font> </p3>
+                <p3>&#160&#160
+                    <a style="color: #e5e5e5"; onclick = "return  domService.goToReg()"> <font size="4"> </font> </a>
+                </p3>
+            </div>
+        </div>
+    </div>
+    <div class="mainpage">
+        <div class = "middle-part" style = "min-width: 800px">
+            <div class = "content" >
+                <div class="block-news">
+                    <div class = "news">
+                        <div class = "toolbar">
+
+                            <div class = "toolspace"> &#180</div>
+                            <div class = "rewrite" onclick = "return  domService.goToEdit(0)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/rewrite.png" width="100%"height="100%">
+                            </div>
+                            <div  class = "delete" onclick = "return  domService.deleteNews(0)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/delete.png" width="100%"height="100%">
+                            </div>
+                        </div>
+                        <div class = "handle">
+                            <h1 style="color: #636363"> </h1>
+                        </div>
+                        <div class = "text">
+                            <p>  </p>
+                        </div>
+                        <div class = "menu">
+                            <div class = "data" style="">
+                                <p style="color: #6a6a6a"> <i>  </i> </p>
+                            </div>
+
+                            <div class = "get-more"onclick = "return  domService.getFullNews(0)">
+                                <p align="center">
+                                    <a  title="показать больше" style="text-decoration: none; color: black;">
+                                        показать больше
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class = "autor" style="">
+                                <p style="color: #6a6a6a"; align="right"> <i>  </i> </p>
+                            </div>
+
+                        </div>
+                        <div style="height:4vmax;"></div>
+                    </div>
+                    <div class = "news">
+                        <div class = "toolbar">
+                            <div class = "toolspace"> &#180</div>
+                            <div class = "rewrite" onclick = "return  domService.goToEdit(1)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/rewrite.png" width="100%"height="100%">
+                            </div>
+                            <div  class = "delete" onclick = "return  domService.deleteNews(1)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/delete.png" width="100%"height="100%">
+                            </div>
+                        </div>
+                        <div class = "handle">
+                            <h1 style="color: #636363"> </h1>
+                        </div>
+                        <div class = "text">
+                            <p>  </p>
+                        </div>
+                        <div class = "menu">
+                            <div class = "data" style="">
+                                <p style="color: #6a6a6a"> <i>  </i> </p>
+                            </div>
+
+                            <div class = "get-more" onclick = "return  domService.getFullNews(1)">
+                                <p align="center">
+                                    <a title="показать больше" style="text-decoration: none; color: black;">
+                                        показать больше
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class = "autor" style="">
+                                <p style="color: #6a6a6a"; align="right"> <i>  </i> </p>
+                            </div>
+
+                        </div>
+                        <div style="height:4vmax;"></div>
+                    </div>
+                </div>
+                <div class="block-news">
+                    <div class = "news">
+                        <div class = "toolbar">
+
+                            <div class = "toolspace"> &#180</div>
+                            <div class = "rewrite" onclick = "return  domService.goToEdit(2)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/rewrite.png" width="100%"height="100%">
+                            </div>
+                            <div  class = "delete" onclick = "return  domService.deleteNews(2)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/delete.png" width="100%"height="100%">
+                            </div>
+                        </div>
+                        <div class = "handle">
+                            <h1 style="color: #636363"> </h1>
+                        </div>
+                        <div class = "text">
+                            <p>  </p>
+                        </div>
+                        <div class = "menu">
+                            <div class = "data" style="">
+                                <p style="color: #6a6a6a"> <i>  </i> </p>
+                            </div>
+
+                            <div class = "get-more" onclick = "return  domService.getFullNews(2)">
+                                <p align="center">
+                                    <a title="показать больше" style="text-decoration: none; color: black;">
+                                        показать больше
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class = "autor" style="">
+                                <p style="color: #6a6a6a"; align="right"> <i>  </i> </p>
+                            </div>
+
+                        </div>
+                        <div style="height:4vmax;"></div>
+                    </div>
+                    <div class = "news">
+                        <div class = "toolbar">
+
+                            <div class = "toolspace"> &#180</div>
+                            <div class = "rewrite" onclick = "return  domService.goToEdit(3)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/rewrite.png" width="100%"height="100%">
+                            </div>
+                            <div  class = "delete" onclick = "return  domService.deleteNews(3)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/delete.png" width="100%"height="100%">
+                            </div>
+                        </div>
+                        <div class = "handle">
+                            <h1 style="color: #636363"> </h1>
+                        </div>
+                        <div class = "text">
+                            <p>  </p>
+                        </div>
+                        <div class = "menu">
+                            <div class = "data" style="">
+                                <p style="color: #6a6a6a"> <i>  </i> </p>
+                            </div>
+
+                            <div class = "get-more" onclick = "return  domService.getFullNews(3)">
+                                <p align="center">
+                                    <a title="показать больше" style="text-decoration: none; color: black;">
+                                        показать больше
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class = "autor" style="">
+                                <p style="color: #6a6a6a"; align="right"> <i>  </i> </p>
+                            </div>
+
+                        </div>
+                        <div style="height:4vmax;"></div>
+                    </div>
+                </div>
+                <div class="block-news">
+                    <div class = "news">
+                        <div class = "toolbar">
+                            <div class = "toolspace"> &#180</div>
+                            <div class = "rewrite" onclick = "return  domService.goToEdit(4)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/rewrite.png" width="100%"height="100%">
+                            </div>
+                            <div  class = "delete" onclick = "return  domService.deleteNews(4)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/delete.png" width="100%"height="100%">
+                            </div>
+                        </div>
+                        <div class = "handle">
+                            <h1 style="color: #636363"> </h1>
+                        </div>
+                        <div class = "text">
+                            <p>  </p>
+                        </div>
+                        <div class = "menu">
+                            <div class = "data" style="">
+                                <p style="color: #6a6a6a"> <i>  </i> </p>
+                            </div>
+
+                            <div class = "get-more" onclick = "return  domService.getFullNews(4)">
+                                <p align="center">
+                                    <a title="показать больше" style="text-decoration: none; color: black;">
+                                        показать больше
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class = "autor" style="">
+                                <p style="color: #6a6a6a"; align="right"> <i>  </i> </p>
+                            </div>
+
+                        </div>
+                        <div style="height:4vmax;"></div>
+                    </div>
+                    <div class = "news">
+                        <div class = "toolbar">
+
+                            <div class = "toolspace"> &#180</div>
+                            <div class = "rewrite" onclick = "return  domService.goToEdit(5)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/rewrite.png" width="100%"height="100%">
+                            </div>
+                            <div  class = "delete" onclick = "return  domService.deleteNews(5)">
+                                <img src="http://www.fotohost.by/images/2017/02/26/delete.png" width="100%"height="100%">
+                            </div>
+                        </div>
+                        <div class = "handle">
+                            <h1 style="color: #636363"> </h1>
+                        </div>
+                        <div class = "text">
+                            <p>  </p>
+                        </div>
+                        <div class = "menu">
+                            <div class = "data" style="">
+                                <p style="color: #6a6a6a"> <i>  </i> </p>
+                            </div>
+
+                            <div class = "get-more" onclick = "return  domService.getFullNews(5)">
+                                <p align="center">
+                                    <a title="показать больше" style="text-decoration: none; color: black;">
+                                        показать больше
+                                    </a>
+                                </p>
+                            </div>
+
+                            <div class = "autor" style="">
+                                <p style="color: #6a6a6a"; align="right"> <i>  </i> </p>
+                            </div>
+
+                        </div>
+                        <div style="height:4vmax;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class = "space">  </div>
+            <div class = "filter">
+                <h2>Filter</h2>
+                <div class="select">
+                    <p2>  По автору </p2>
+                    <label><input type="checkbox" value="1" name="autor"><span></span></label>
+                    <br>
+                    <br>
+                    <select name="autor">
+                        <option value="Автор">--Автор--</option>
+                    </select>
+                    <br>
+                    <br>
+                    <p2>  По дате </p2>
+                    <label><input type="checkbox" value="2" name="data"><span></span></label>
+                    <br>
+                    <br>
+                    <input type="date" style="width: 100%">
+                    <input type="date" style="width: 100%">
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <div class="re-build">
+                    <div class="button-f"; onclick = "return  domService.filterNews()">
+                        <p align="center"; >
+                            <a2>
+                                подобрать
+                            </a2>
+                        </p>
+                    </div>
+                    <div class="button-sp"> </div>
+                </div>
+                <div class="black-space" style="height: 200px">    </div>
+                <div class="add-new"; onclick = "return  domService.goToAdd()">
+                    <p align="center"; >
+                        <a3>
+                            добавить новость
+                        </a3>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class = "pagination" style=" min-width: 800px;">
+            <div class="paginspace">&#180 </div>
+            <div class="paginspace">&#180 </div>
+            <div class = "paginbox" onclick="return domService.lastPage()"> <p align="center"> <a style="color: #000000;text-decoration: none"><strong>назад</strong></a> </p> </div>
+            <div class = "paginbox" onclick="return domService.nextPage()"> <p align="center"> <a style="color: #000000;text-decoration: none"><strong>ещё</strong></a> </p> </div>
+            <div class="paginspace"> </div>
+        </div>
+    </div>
+    <div class="editnews">
+        <div class="editcontent">
+            <div style="width: 5%;float:left"> &#160</div>
+            <div style="width: 44%;float:left">
+                <h2 style="font-size: 5vh">заголовок</h2>
+                <textarea class="edithandleNews" maxlength=57 align="center"> Заголовок </textarea>
+                <h2 style="  font-size: 5vh">краткое содержание</h2>
+                <textarea class="editsummaryNews" maxlength=192 style="font-size: 2vmin;"align="center"> краткое содержание </textarea>
+                <h2 style="  font-size: 5vh; width: 30%; float: left">ID&#160</h2>;
+                <h2 style="  font-size: 5vh; width: 30%; float: left"></h2>;
+            </div>
+            <div style="width: 2%;float:left"> &#160</div>
+            <div style="width: 44%;float:left">
+                <h2 style="  font-size: 5vh">полный текст</h2>
+                <textarea class="editfulltextNews" style="font-size: 2vmin;"align="center"> полный текст </textarea>
+            </div>
+            <div style="width: 5%;float:left"> &#160</div>
+        </div>
+            <div style="width: 10%;float:left"> &#160</div>
+            <div class="editbutton"; onclick = "return domService.saveEdit()">  <p style="font-size: 4vmin; margin: 0 0 0 0"align="center"><strong>сохранить</strong></p> </div>
+            <div style="width: 10%;float:left"> &#160</div>
+        <div class="editspacetwo"></div>
+    </div>
+    <div class="addnews">
+        <div style="width: 5%;float:left"> &#160</div>
+        <div style="width: 44%;float:left">
+            <h2 style="  font-size: 5vh">ID: ##</h2>
+            <h2 style="  font-size: 5vh">заголовок</h2>
+            <textarea class="addhandleNews" maxlength=57 align="center" quired> Заголовок </textarea>
+            <h2 style="  font-size: 5vh">краткое содержание</h2>
+            <textarea class="addsummaryNews" maxlength=192 style="font-size: 2vmin;"align="center" quired> краткое содержание </textarea>
+            <div style="float: left; width: 20%"> &#160</div>
+            <div class="addbutton"; onclick = "return domService.loadNew()">
+                <p style="font-size: 4vmin; margin: 8vh 0 0 0"align="center"><strong>сохранить</strong></p>
+            </div>
+        </div>
+        <div style="width: 2%;float:left"> &#160</div>
+        <div style="width: 44%;float:left">
+            <h2 style="  font-size: 5vh">полный текст</h2>
+            <textarea class="addfulltextNews" style="font-size: 2vmin;"align="center" quired> полный текст </textarea>
+        </div>
+        <div style="width: 5%;float:left">  &#160</div>
+    </div>
+    <div class="registration">
+        <div class="registrspaceone"></div>
+        <div class="registrcontent" style="min-width: 600px">
+            <div style="width: 30%;float:left"> &#160</div>
+            <div style="width: 30%;float:left">
+                <h2 style="  font-size: 5vh">ваш логин</h2>
+                <input type="text" class="text" name="" />
+                <h2 style="  font-size: 5vh">ваш пароль</h2>
+                <input type="text" class="text" name="" />
+                <div class="registrbutton"; onclick = "return domService.regName()">
+                    <p style="font-size: 4vmin;"align="center"><strong>войти</strong></p>
+                </div>
+            </div>
+            <div style="width: 40%;float:left">&#160 </div>
+        </div>
+        <div class="registrspacetwo"></div>
+    </div>
+    <div class="readfullnews">
+        <div class = "content" >
+            <div class = "fullnews">
+                <div class = "fullhandle">
+                    <h1 style="color: #636363; font-size: 3vw"> Handle </h1>
+                </div>
+                <div class = "fulltext">
+                    <p style="font-size: 3vmin"> full text </p>
+                </div>
+                <div class = "fullmenu">
+                    <div class = "fulldata">
+                        <p style="color: #6a6a6a; margin: 0 0 0 0; font-size: 3vmin"> <i> data </i> </p>
+                    </div>
+                    <div class = "fullautor">
+                        <p style="color: #6a6a6a; ; margin: 0 0 0 0; font-size: 3vmin"; align="right"> <i> author </i> </p>
+                    </div>
+                </div>
+                <div style="height:4vmax;"></div>
+            </div>
+            </div>
+        <div class = "fullfilter">
+            <div class = "returnbutton"  onclick = "return  domService.toIndex()">
+                <p align="center" style="; margin: 15% 0 0 0">
+                    <a title="показать больше" style="text-decoration: none; color: white; font-size: 3vmin">
+                       <strong>вернуться назад</strong>
+                    </a>
+                </p>
+            </div>
+            <div class = "returnbutton"  onclick = "return  domService.fromFullToEdit()">
+                <p align="center" style="; margin: 15% 0 0 0; color: white;">
+                    <a title="показать больше" style="text-decoration: none; color: white; font-size: 3vmin">
+                        <strong>изменить</strong>
+                    </a>
+                </p>
+            </div>
+            <div class = "returnbutton"  onclick = "return  domService.deleteFromFull()">
+                <p align="center" style="; margin: 15% 0 0 0; color: white;">
+                    <a title="показать больше" style="text-decoration: none; color: white; font-size: 3vmin">
+                        <strong>удалить</strong>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="errorpage" style="margin: 15vh 15vw 14vh 15vw">
+            <h1 style="font-size: 10vmin; color: white"align="center"> Что-то пошло не так </h1>
+            <h1 style="font-size: 7vmin; color: #d7d7d7" align="center"></h1>
+            <div class="errorbutton" onclick="return domService.toIndex()"> <p style="font-size: 3vw; margin: 0 0 0 0" align="center">к новостям</p></div>
+    </div>
+    <div class="footer">
+        <div class = "footermenu">
+            <p style="font-size: 1.4vw" align="center">  <strong> Zonal News </strong> </p>
+        </div>
+        <div class = "footermenu">
+            <p style="font-size: 1.4vw" align="center">  <strong> Nick Zabolotskiy </strong> </p>
+        </div>
+        <div class = "footermenu">
+            <p style="font-size: 1.4vw" align="center">  <strong> 2 курс 5 группа </strong> </p>
+        </div>
+        <div class = "footermenu">
+            <p style="font-size: 1.4vw" align="center">  <strong> NickZabolotskiy@gmail.com </strong> </p>
+        </div>
+        <div class = "footermenu">
+            <p style="font-size: 1.4vw" align="center">  <strong> 26/03/2017 </strong>  </p>
+        </div>
+    </div>
+
+</body>
+<script src="dom.js"></script>
+<script src="saver.js"></script>
+
+</html>
