@@ -12,21 +12,15 @@ var domService = (function () {
     var cantShow = [false,false,false,false,false];
     var names=[];
     var paginCounter=-1;
-    var UserName;
-    UserName = "";
-
-    console.log(UserName);
-
+    var UserName ="";
     var tempID=-1;
-    var logins = ["mrBlack","mrGreen","mrRed","mrGrey","mrBrown","mrWhite","mrsBlack","mrsGreen","mrsRed","mrsGrey","mrsBrown","mrsWhite"];
-    var passwords = ["2244mbl","2244mgr","2244mrd","2244mgr","2244mbr","2244mwh","2244wbl","2244wgr","2244wrd","2244wgr","2244wbr","2244wwh"];
+    var logins = ["mr.Glad","mr.Stunning","mr.Proud","mr.Sad","mr.Mournful","mr.Calm","mrs.Glad","mrs.Stunning","mrs.Proud","mrs.Sad","mrs.Mournful","mrs.Calm"];
+    var passwords = ["2244mgl","2244mst","2244mpr","2244msd","2244mmr","2244mcl","2244wgl","2244wst","2244wpr","2244wsd","2244wmr","2244wcl"];
 
     function rewriteNews(){
         var i=0;
         for(var j=1; j<6;j+=2){
-
             var tempN = document.body.childNodes[3].childNodes[1].childNodes[1].childNodes[j].childNodes[1];
-
             if(cantShow[j-1] == true) {
                 tempN.style.opacity=0;
             }
@@ -37,11 +31,8 @@ var domService = (function () {
                 tempN.childNodes[7].childNodes[5].childNodes[1].textContent = onWall[i].createdAt.toDateString();
                 tempN.style.opacity=1;
             }
-
             i++;
-
             var tempN = document.body.childNodes[3].childNodes[1].childNodes[1].childNodes[j].childNodes[3];
-
             if(cantShow[j] == true){
                 tempN.style.opacity=0;
             }else{
@@ -55,14 +46,15 @@ var domService = (function () {
         }
     }
     function regName(){
-        if(document.body.childNodes[9].childNodes[3].childNodes[3].childNodes[3].value == "")
-        {
-            logIn(document.body.childNodes[9].childNodes[3].childNodes[3].childNodes[3].value);
-            document.body.childNodes[3].style.display = "block";
-            document.body.childNodes[9].style.display = "none";
+        if(document.body.childNodes[9].childNodes[3].childNodes[3].childNodes[3].value == ""){
+            alert("ВВЕДИТЕ ЛОГИН");
+            return 0;
         }
-        else{
-            for(var i=0; i<logins.length; i++){
+        if(document.body.childNodes[9].childNodes[3].childNodes[3].childNodes[7].value == ""){
+            alert("ВВЕДИТЕ ПАРОЛЬ");
+            return 0;
+        }
+        for(var i=0; i<logins.length; i++){
                 if(document.body.childNodes[9].childNodes[3].childNodes[3].childNodes[3].value == logins[i]){
                     if(document.body.childNodes[9].childNodes[3].childNodes[3].childNodes[7].value == passwords[i]){
                         logIn(document.body.childNodes[9].childNodes[3].childNodes[3].childNodes[3].value);
@@ -74,44 +66,44 @@ var domService = (function () {
                         return;
                     }
                 }
-
             }
             someError("неверный логин");
-        }
+        return 0;
     }
     function saveEdit(){
-        onWall[tempID].content = document.body.childNodes[5].childNodes[1].childNodes[7].childNodes[3].value;
-        onWall[tempID].title = document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[3].value;
-        onWall[tempID].summary = document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[7].value;
+        var content = document.body.childNodes[5].childNodes[1].childNodes[7].childNodes[3].value;
+        var title = document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[3].value;
+        var summary = document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[7].value;
 
-        editNode(onWall[tempID].id, onWall[tempID].title, onWall[tempID].summary, onWall[tempID].content);
-        articles = articlesService.articles;
-        articles = articlesService.articles;
-        var articles2 =[];
-        for(var i=0; i< articles.length; i++){
-            if(articles[i].isDeleted != 'true'){
-                articles2.push(articles[i]);
+        if(editNode(onWall[tempID].id, title, summary, content))
+        {
+            articles = articlesService.articles;
+            articles = articlesService.articles;
+            var articles2 =[];
+            for(var i=0; i< articles.length; i++){
+                if(articles[i].isDeleted != 'true'){
+                    articles2.push(articles[i]);
+                }
             }
+            articles = articles2;
+            var id2 =  document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[11].textContent;
+            document.body.childNodes[5].style.display = "none";
+            for(var i=0; i<onWall.length; i++){
+                if(onWall[i].id==id2)  tempID=i;
+            }
+            getFullNews(tempID);
+            rewriteNews();
         }
-        articles = articles2;
-
-        var id2 =  document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[11].textContent;
-        document.body.childNodes[5].style.display = "none";
-        for(var i=0; i<onWall.length; i++){
-            if(onWall[i].id==id2)  tempID=i;
-        }
-        getFullNews(tempID);
-
-        rewriteNews();
     }
     function goToReg(){
-        document.body.childNodes[3].style.display = "none";
-        document.body.childNodes[5].style.display = "none";
-        document.body.childNodes[7].style.display = "none";
-        document.body.childNodes[9].style.display = "block";
-        document.body.childNodes[11].style.display = "none";
-        document.body.childNodes[13].style.display = "none";
-
+        if(UserName == ""){
+            document.body.childNodes[3].style.display = "none";
+            document.body.childNodes[5].style.display = "none";
+            document.body.childNodes[7].style.display = "none";
+            document.body.childNodes[9].style.display = "block";
+            document.body.childNodes[11].style.display = "none";
+            document.body.childNodes[13].style.display = "none";
+        }else logIn("");
     }
     function goToEdit(number){
         if(UserName != "" && cantShow[number]== false){
@@ -123,12 +115,10 @@ var domService = (function () {
             document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[7].value = onWall[number].summary;
             document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[11].textContent = onWall[number].id;
         }
-
     }
     function loadNew(){
         var id2 = articlesService.articles.length +1;
-
-        articlesService.addArticle(
+        if(articlesService.addArticle(
             {   id:id2.toString(),
                 isDeleted: 'false',
                 title: document.body.childNodes[7].childNodes[3].childNodes[5].value.toString(),
@@ -136,38 +126,32 @@ var domService = (function () {
                 createdAt: new Date(),
                 author: UserName,
                 content: document.body.childNodes[7].childNodes[7].childNodes[3].value.toString(),
-            });
-
-        articles = articlesService.getArticles(0,articlesService.articles.length+1);
-        articles = articlesService.articles;
-        var articles2 =[];
-        for(var i=0; i< articles.length; i++){
-            if(articles[i].isDeleted != 'true'){
-                articles2.push(articles[i]);
+            }))
+        {
+            articles = articlesService.getArticles(0,articlesService.articles.length+1);
+            articles = articlesService.articles;
+            var articles2 =[];
+            for(var i=0; i< articles.length; i++){
+                if(articles[i].isDeleted != 'true'){
+                    articles2.push(articles[i]);
+                }
             }
+            articles = articles2;
+            onWall = articles.slice(0,6);
+            for(var i=0; i<6; i++) {
+                if (onWall.length <= i) cantShow[i] = true;
+                else  cantShow[i] = false;
+            }
+            findAuthors();
+            rewriteNews();
+            nextPage();
+            lastPage();
+            document.body.childNodes[7].style.display = "none";
+            for(var i=0; i<onWall.length; i++) if(onWall[i].id==id2)  tempID=i;
+            getFullNews(tempID);
         }
-        articles = articles2;
-        onWall = articles.slice(0,6);
-
-        for(var i=0; i<6; i++) {
-            if (onWall.length <= i) cantShow[i] = true;
-            else  cantShow[i] = false;
-        }
-
-        findAuthors();
-        rewriteNews();
-        nextPage();
-        lastPage();
-
-        document.body.childNodes[7].style.display = "none";
-        for(var i=0; i<onWall.length; i++){
-            if(onWall[i].id==id2)  tempID=i;
-        }
-        getFullNews(tempID);
-
     }
     function goToAdd(){
-        console.log(UserName);
         if(UserName != "") {
             document.body.childNodes[7].style.display = "block";
             document.body.childNodes[3].style.display = "none";
@@ -175,7 +159,6 @@ var domService = (function () {
     }
     function deleteNews(id2){
         if(UserName != "" && cantShow[id2]== false){
-
             articlesService.removeArticle(onWall[id2].id);
             var articles2 =[];
             for(var i=0; i< articles.length; i++){
@@ -184,14 +167,11 @@ var domService = (function () {
                 }
             }
             articles = articles2;
-
             onWall = articles.slice(0,6);
-
             for(var i=0; i<6; i++) {
                 if (onWall.length <= i) cantShow[i] = true;
                 else  cantShow[i] = false;
             }
-
             if(onWall.length == 0){
                 for(var i=0; i<articlesService.articles.length; i++) articlesService.articles[i].isDeleted = 'false';
                 articles = articlesService.articles;
@@ -202,7 +182,7 @@ var domService = (function () {
                 }
                 someError("Новостей больше нет");
             }
-
+            findAuthors();
             nextPage();
             lastPage();
             rewriteNews();
@@ -225,9 +205,8 @@ var domService = (function () {
         document.body.childNodes[11].childNodes[1].childNodes[1].childNodes[5].childNodes[3].childNodes[1].textContent = onWall[id].createdAt.toDateString();
 
     }
-    function  filterNews(){
+    function filterNews(){
         var n, txt="", value1 = null, value2 = null;
-
         if(document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[3].childNodes[0].checked){
             n = document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[9].options.selectedIndex;
             txt = document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[9].options[n].text;
@@ -238,7 +217,6 @@ var domService = (function () {
             if(document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[25].value)
                 value2 = new Date(document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[25].value);
         }
-
         if(value1 == null && value2 == null && (txt=="" || txt=="--Автор--")){
             articles = articlesService.articles;
             var articles2 =[];
@@ -287,7 +265,6 @@ var domService = (function () {
                 }
             }
         }
-
         for(var i=0; i<6; i++){
             if(onWall.length <= i) cantShow[i] = true;
             else  cantShow[i] = false;
@@ -339,8 +316,6 @@ var domService = (function () {
             for(var j=1; j<6;j+=2){
                 var tempN = document.body.childNodes[3].childNodes[1].childNodes[1].childNodes[j].childNodes[1];
 
-
-
                 tempN.childNodes[1].childNodes[3].style.opacity=0.4;
                 tempN.childNodes[1].childNodes[3].style.cursor = "pointer";
                 tempN.childNodes[1].childNodes[5].style.opacity=0.4;
@@ -353,22 +328,23 @@ var domService = (function () {
                 tempN.childNodes[1].childNodes[3].style.cursor = "pointer";
                 tempN.childNodes[1].childNodes[5].style.opacity=0.4;
                 tempN.childNodes[1].childNodes[5].style.cursor = "pointer";
-
             }
         }
         rewriteNews();
     }
     function editNode(id1, title1, summary1, content1){
-        articlesService.editArticle(id1,
+        if(articlesService.editArticle(id1,
             {id:'34',title: title1,summary: summary1, createdAt: new Date('1991-08-15T23:12:44'),
-                author:'ItsIam',content: content1});
-        rewriteNews();
+                author:'ItsIam',content: content1}) == true)
+        {
+            rewriteNews();
+            return true;
+        }else return false;
     }
     function nextPage(){
         if(articles.slice((paginCounter+1)*6,(paginCounter+1)*6+6).length !=0){
             paginCounter++;
             onWall = articles.slice(paginCounter*6,paginCounter*6+6);
-
             for(var i=0; i<6; i++){
                 if(onWall.length <= i) cantShow[i] = true;
                 else  cantShow[i] = false;
@@ -384,7 +360,6 @@ var domService = (function () {
         if(paginCounter > 0){
             paginCounter--;
             onWall = articles.slice(paginCounter*6,paginCounter*6+6);
-
             for(var i=0; i<6; i++){
                 if(onWall.length <= i) cantShow[i] = true;
                 else  cantShow[i] = false;
@@ -397,22 +372,20 @@ var domService = (function () {
         else document.body.childNodes[3].childNodes[3].childNodes[7].style.opacity=0.8;
     }
     function findAuthors(){
-        for(var i=0; i<articlesService.articles.length; i++){
+        names=[];
+        for(var i=0; i<articles.length; i++){
             if(!names.find(function (temp){
-                    return temp == articlesService.articles[i].author
+                    return temp == articles[i].author
                 }))
-                names.push(articlesService.articles[i].author);
+                names.push(articles[i].author);
         }
-
        while(document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[9].firstElementChild != undefined)
            document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[9].removeChild(document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[9].lastChild);
-
         for(var i=0; i<names.length; i++){
             option = document.createElement('option');
             option.className = "menu";
             option.innerHTML = names[i];
             document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[9].appendChild(option);
-
         }
     }
     function fromFullToEdit(){
@@ -428,7 +401,6 @@ var domService = (function () {
     }
     function deleteFromFull(){
         if(UserName != ""){
-
             document.body.childNodes[11].style.display = "none";
             document.body.childNodes[3].style.display = "block";
 
@@ -446,19 +418,21 @@ var domService = (function () {
                 if (onWall.length <= i) cantShow[i] = true;
                 else  cantShow[i] = false;
             }
-
             if(onWall.length == 0){
                 for(var i=0; i<articlesService.articles.length; i++) articlesService.articles[i].isDeleted = 'false';
                 articles = articlesService.articles;
                 onWall = articles.slice(0,6);
                 for(var i=0; i<6; i++) {
                     cantShow[i] = false;
-
                 }
                 someError("Новостей больше нет");
             }
+            nextPage();
+            lastPage();
             rewriteNews();
+            findAuthors();
         }
+
     }
     function someError(errorType){
         document.body.childNodes[13].childNodes[3].textContent = errorType;
@@ -475,17 +449,12 @@ var domService = (function () {
         document.body.childNodes[11].style.display = "none";
     }
 
-
-
     document.body.childNodes[3].style.display = "block";
     document.body.childNodes[5].style.display = "none";
     document.body.childNodes[7].style.display = "none";
     document.body.childNodes[9].style.display = "none";
     document.body.childNodes[11].style.display = "none";
     document.body.childNodes[13].style.display = "none";
-
-
-
 
     nextPage();
     lastPage();

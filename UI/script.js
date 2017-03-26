@@ -2,12 +2,12 @@
 var articlesService = (function () {
 
 var articles;
-
     if(localStorage.getItem('content') != null){
         articles = JSON.parse(localStorage.getItem('content')) || [];
         for (var i=0; i<articles.length; i++) {
             articles[i].createdAt = new Date(articles[i].createdAt);
         }
+        // localStorage.removeItem('content');
     }
     else{
         articles = [
@@ -640,9 +640,6 @@ function editArticle(id, article) {
     domService.someError("NEWS IS NOT VALID. ADDING FAILED");
     return false;
 }
-
-
-
 
 return{
     getArticles: getArticles,

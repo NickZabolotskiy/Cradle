@@ -36,12 +36,12 @@
     width: 90%;
     height: 10vh;
     background-color: #6d6d6d;
-    border-radius: 10px;
+    border-radius: 20px;
     color: black;
     margin: 50% 5% 0 5%;
 }
 .returnbutton:hover{
-    background-color:  #fffb48;
+    background-color: #a4a4a4;
     color: white;
     border-radius: 20px;
 }
