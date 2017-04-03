@@ -578,7 +578,7 @@ function editArticle(id, article) {
 
 
 app.get('/loadBase', function (req, res) {
-            fs.readFile("articles.json",'utf-8', function (err, data) {
+            fs.readFile("articles.json",'utf8', function (err, data) {
                 if (!err) {
                     res.json(data);
                     fs.close(2);
@@ -586,10 +586,14 @@ app.get('/loadBase', function (req, res) {
                 }
             });
     fs.close(2);
+    return res;
 });
+
 app.post('/loadBase', function (req, res) {
- fs.writeFile("articles.json",  JSON.stringify(req.body), 'utf-8');
+    fs.writeFile("articles.json",JSON.stringify(req.body));
     fs.close(2);
+
+    res.json("ALLRIRHT");
     return res;
 });
 
