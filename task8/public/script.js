@@ -2,12 +2,24 @@
 var articlesService = (function () {
 
 var articles;
-    if(localStorage.getItem('content') != null){
-        articles = JSON.parse(localStorage.getItem('content')) || [];
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/loadBase', false);
+    xhr.send();
+    var text_in_f1 = xhr.responseText;
+    text_in_f1 = text_in_f1.slice(1,text_in_f1.length-1);
+
+    for(var i=0; i<text_in_f1.length;i++)  if(text_in_f1[i] == '\\')  text_in_f1 = text_in_f1.substring(0,i)+text_in_f1.substring(i+1);
+
+    console.log(text_in_f1.length);
+    console.log(text_in_f1);
+
+    if( text_in_f1.length != 0 &&  text_in_f1.length != 1){
+        articles = JSON.parse(text_in_f1);
+
         for (var i=0; i<articles.length; i++) {
             articles[i].createdAt = new Date(articles[i].createdAt);
         }
-        // localStorage.removeItem('content');
     }
     else{
         articles = [

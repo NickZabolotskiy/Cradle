@@ -1,6 +1,7 @@
 ﻿var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var fs = require("fs");
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -11,7 +12,6 @@ app.set('port', (process.env.PORT || 5000));
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 });
-
 
 articles = [
     {
@@ -576,6 +576,23 @@ function editArticle(id, article) {
     return false;
 }
 
+
+app.get('/loadBase', function (req, res) {
+            fs.readFile("articles.json",'utf-8', function (err, data) {
+                if (!err) {
+                    res.json(data);
+                    fs.close(2);
+                    return res;
+                }
+            });
+    fs.close(2);
+});
+app.post('/loadBase', function (req, res) {
+ fs.writeFile("articles.json",  JSON.stringify(req.body), 'utf-8');
+    fs.close(2);
+    return res;
+});
+
 app.get('/article', function (req, res) {
     if(req.query.id) {
         return res.json(getArticle(req.params.id));
@@ -628,3 +645,7 @@ app.delete('/article/:id', function (req, res) {
     removeArticle(req.params.id);
     res.json({idWasRemoved: Number(id)});
 });
+
+{
+
+}
