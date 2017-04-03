@@ -541,7 +541,7 @@ function addArticle(article){
 function removeArticle(id) {
     for(var i=0; i<articles.length; i++){
         if(articles[i].id == id) {
-            articles[i].isDeleted = 'true';
+            articles.splice(i,i+1);
             return true;
         }
     }
