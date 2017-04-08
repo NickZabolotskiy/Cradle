@@ -1,12 +1,12 @@
-
 var domService = (function () {
-
-    var articles =[];
-        for(var i=0; i< articlesService.articles.length; i++){
-            if( articlesService.articles[i].isDeleted != 'true'){
-                articles.push(articlesService.articles[i]);
-            }
+    articles = articlesService.getArticles(0,articlesService.articles().length+1);
+    var articles2 =[];
+    for(var i=0; i< articles.length; i++){
+        if(articles[i].isDeleted != 'true'){
+            articles2.push(articles[i]);
         }
+    }
+    articles = articles2;
 
     var onWall = articlesService.getArticles(0,6);
     var cantShow = [false,false,false,false,false];
@@ -74,11 +74,11 @@ var domService = (function () {
         var content = document.body.childNodes[5].childNodes[1].childNodes[7].childNodes[3].value;
         var title = document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[3].value;
         var summary = document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[7].value;
-
-        if(editNode(onWall[tempID].id, title, summary, content))
+        if(articlesService.editArticle(onWall[tempID].id,
+                {id:'34',title: title,summary: summary, createdAt: new Date('1991-08-15T23:12:44'),
+                    author:'ItsIam',content: content}))
         {
-            articles = articlesService.articles;
-            articles = articlesService.articles;
+            articles = articlesService.getArticles(0,articlesService.articles().length+1);
             var articles2 =[];
             for(var i=0; i< articles.length; i++){
                 if(articles[i].isDeleted != 'true'){
@@ -86,6 +86,11 @@ var domService = (function () {
                 }
             }
             articles = articles2;
+            for(var i=0; i<articles.length; i++){
+                for(var j=0; j<onWall.length; j++) {
+                    if (articles[i].id == onWall[j].id) onWall[j] = articles[i];
+                }
+            }
             var id2 =  document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[11].textContent;
             document.body.childNodes[5].style.display = "none";
             for(var i=0; i<onWall.length; i++){
@@ -117,7 +122,7 @@ var domService = (function () {
         }
     }
     function loadNew(){
-        var id2 = articlesService.articles.length +1;
+        var id2 = articlesService.articles().length +1;
         if(articlesService.addArticle(
             {   id:id2.toString(),
                 isDeleted: 'false',
@@ -128,8 +133,7 @@ var domService = (function () {
                 content: document.body.childNodes[7].childNodes[7].childNodes[3].value.toString(),
             }))
         {
-            articles = articlesService.getArticles(0,articlesService.articles.length+1);
-            articles = articlesService.articles;
+            articles = articlesService.getArticles(0,articlesService.articles().length+1);
             var articles2 =[];
             for(var i=0; i< articles.length; i++){
                 if(articles[i].isDeleted != 'true'){
@@ -137,18 +141,21 @@ var domService = (function () {
                 }
             }
             articles = articles2;
-            onWall = articles.slice(0,6);
+
+            var onWall =  articles.slice(0,6);
             for(var i=0; i<6; i++) {
                 if (onWall.length <= i) cantShow[i] = true;
                 else  cantShow[i] = false;
             }
+            
+
             findAuthors();
             rewriteNews();
             nextPage();
             lastPage();
-            document.body.childNodes[7].style.display = "none";
             for(var i=0; i<onWall.length; i++) if(onWall[i].id==id2)  tempID=i;
-            getFullNews(tempID);
+            document.body.childNodes[7].style.display = "none";
+            getFullNews(0);
         }
     }
     function goToAdd(){
@@ -160,6 +167,7 @@ var domService = (function () {
     function deleteNews(id2){
         if(UserName != "" && cantShow[id2]== false){
             articlesService.removeArticle(onWall[id2].id);
+            articles = articlesService.getArticles(0,articlesService.articles().length+1);
             var articles2 =[];
             for(var i=0; i< articles.length; i++){
                 if(articles[i].isDeleted != 'true'){
@@ -173,13 +181,15 @@ var domService = (function () {
                 else  cantShow[i] = false;
             }
             if(onWall.length == 0){
-                for(var i=0; i<articlesService.articles.length; i++) articlesService.articles[i].isDeleted = 'false';
-                articles = articlesService.articles;
+                articles = articlesService.getArticles(0,articlesService.articles().length+1);
+                for(var i=0; i< articles.length; i++)  articles[i].isDeleted = 'false';
+                var xhrt = new XMLHttpRequest();
+                xhrt.open('POST', 'loadBase', false);
+                xhrt.setRequestHeader('Content-Type', 'application/json');
+                xhrt.send(JSON.stringify(articles));
+                articles = articlesService.getArticles(0,articlesService.articles().length+1);
                 onWall = articles.slice(0,6);
-                for(var i=0; i<6; i++) {
-                    cantShow[i] = false;
-
-                }
+                for(var i=0; i<6; i++)   cantShow[i] = false;
                 someError("Новостей больше нет");
             }
             findAuthors();
@@ -203,7 +213,6 @@ var domService = (function () {
         document.body.childNodes[11].childNodes[1].childNodes[1].childNodes[3].childNodes[1].textContent = onWall[id].content;
         document.body.childNodes[11].childNodes[1].childNodes[1].childNodes[5].childNodes[1].childNodes[1].textContent = onWall[id].author
         document.body.childNodes[11].childNodes[1].childNodes[1].childNodes[5].childNodes[3].childNodes[1].textContent = onWall[id].createdAt.toDateString();
-
     }
     function filterNews(){
         var n, txt="", value1 = null, value2 = null;
@@ -217,8 +226,21 @@ var domService = (function () {
             if(document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[25].value)
                 value2 = new Date(document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[3].childNodes[25].value);
         }
+        articles = articlesService.getArticles(0,articlesService.articles().length+1);
+        var articles2 =[];
+        for(var i=0; i< articles.length; i++){
+            if(articles[i].isDeleted != 'true'){
+                articles2.push(articles[i]);
+            }
+        }
+        articles = articles2;
+        for(var i=0; i<articles.length; i++){
+            for(var j=0; j<onWall.length; j++) {
+                if (articles[i].id == onWall[j].id) onWall[j] = articles[i];
+            }
+        }
         if(value1 == null && value2 == null && (txt=="" || txt=="--Автор--")){
-            articles = articlesService.articles;
+            articles = articlesService.getArticles(0,articlesService.articles().length+1);
             var articles2 =[];
             for(var i=0; i< articles.length; i++){
                 if(articles[i].isDeleted != 'true'){
@@ -230,7 +252,7 @@ var domService = (function () {
         }
         else{
             if((value1 != null || value2 != null)&& txt!="" && txt!="--Автор--"){
-                articles = articlesService.getArticlesTimeFilter(0,articlesService.articles.length+1,{createdAt:value1},{createdAt:value2},{author:txt});
+                articles = articlesService.getArticlesTimeFilter(0,articlesService.articles().length+1,{createdAt:value1},{createdAt:value2},{author:txt});
                 var articles2 =[];
                 for(var i=0; i< articles.length; i++){
                     if(articles[i].isDeleted != 'true'){
@@ -242,7 +264,7 @@ var domService = (function () {
             }
             else{
                 if(txt!=""&& txt!="--Автор--"){
-                    articles = articlesService.getArticles(0,articlesService.articles.length+1,{author:txt});
+                    articles = articlesService.getArticles(0,articlesService.articles().length+1,{author:txt});
                     var articles2 =[];
                     for(var i=0; i< articles.length; i++){
                         if(articles[i].isDeleted != 'true'){
@@ -253,7 +275,7 @@ var domService = (function () {
                     onWall = articles.slice(0,6);
                 }
                 else{
-                    articles = articlesService.getArticlesTimeFilter(0,articlesService.articles.length+1,{createdAt:value1},{createdAt:value2});
+                    articles = articlesService.getArticlesTimeFilter(0,articlesService.articles().length+1,{createdAt:value1},{createdAt:value2});
                     var articles2 =[];
                     for(var i=0; i< articles.length; i++){
                         if(articles[i].isDeleted != 'true'){
@@ -281,65 +303,41 @@ var domService = (function () {
             document.body.childNodes[1].childNodes[1].childNodes[1].childNodes[5].childNodes[1].innerText = null;
             document.body.childNodes[1].childNodes[1].childNodes[1].childNodes[7].childNodes[1].innerText = "вoйти";
             document.body.childNodes[1].childNodes[1].childNodes[1].childNodes[7].childNodes[1].title="войти в аккаунт"
-
             document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[9].style.opacity=0;
             document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[9].style.cursor = "default";
-
             for(var j=1; j<6;j+=2){
                 var tempN = document.body.childNodes[3].childNodes[1].childNodes[1].childNodes[j].childNodes[1];
-
                 tempN.childNodes[1].childNodes[3].style.opacity=0;
                 tempN.childNodes[1].childNodes[3].style.cursor = "default";
                 tempN.childNodes[1].childNodes[5].style.opacity=0;
                 tempN.childNodes[1].childNodes[5].style.cursor = "default";
-
-
                 var tempN = document.body.childNodes[3].childNodes[1].childNodes[1].childNodes[j].childNodes[3];
-
                 tempN.childNodes[1].childNodes[3].style.opacity=0;
                 tempN.childNodes[1].childNodes[3].style.cursor = "default";
                 tempN.childNodes[1].childNodes[5].style.opacity=0;
                 tempN.childNodes[1].childNodes[5].style.cursor = "default";
-
             }
-
         }else{
             UserName =  userName1;
             document.body.childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[1].innerText = "для";
             document.body.childNodes[1].childNodes[1].childNodes[1].childNodes[5].childNodes[1].innerText = userName1;
             document.body.childNodes[1].childNodes[1].childNodes[1].childNodes[7].childNodes[1].innerText = "выйти";
             document.body.childNodes[1].childNodes[1].childNodes[1].childNodes[7].childNodes[1].title="покинуть аккаунт"
-
             document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[9].style.opacity=1;
             document.body.childNodes[3].childNodes[1].childNodes[5].childNodes[9].style.cursor = "pointer";
-
             for(var j=1; j<6;j+=2){
                 var tempN = document.body.childNodes[3].childNodes[1].childNodes[1].childNodes[j].childNodes[1];
-
                 tempN.childNodes[1].childNodes[3].style.opacity=0.4;
                 tempN.childNodes[1].childNodes[3].style.cursor = "pointer";
                 tempN.childNodes[1].childNodes[5].style.opacity=0.4;
                 tempN.childNodes[1].childNodes[5].style.cursor = "pointer";
-
-
                 var tempN = document.body.childNodes[3].childNodes[1].childNodes[1].childNodes[j].childNodes[3];
-
                 tempN.childNodes[1].childNodes[3].style.opacity=0.4;
                 tempN.childNodes[1].childNodes[3].style.cursor = "pointer";
                 tempN.childNodes[1].childNodes[5].style.opacity=0.4;
                 tempN.childNodes[1].childNodes[5].style.cursor = "pointer";
             }
         }
-        rewriteNews();
-    }
-    function editNode(id1, title1, summary1, content1){
-        if(articlesService.editArticle(id1,
-            {id:'34',title: title1,summary: summary1, createdAt: new Date('1991-08-15T23:12:44'),
-                author:'ItsIam',content: content1}) == true)
-        {
-            rewriteNews();
-            return true;
-        }else return false;
     }
     function nextPage(){
         if(articles.slice((paginCounter+1)*6,(paginCounter+1)*6+6).length !=0){
@@ -350,8 +348,7 @@ var domService = (function () {
                 else  cantShow[i] = false;
                 if(paginCounter <=0) document.body.childNodes[3].childNodes[3].childNodes[5].style.opacity=0;
                 else document.body.childNodes[3].childNodes[3].childNodes[5].style.opacity=0.8;
-            }
-            rewriteNews();
+            }rewriteNews();
         }
         if(articles.slice((paginCounter+1)*6,(paginCounter+1)*6+6).length ==0) document.body.childNodes[3].childNodes[3].childNodes[7].style.opacity=0;
         else document.body.childNodes[3].childNodes[3].childNodes[7].style.opacity=0.8;
@@ -363,8 +360,7 @@ var domService = (function () {
             for(var i=0; i<6; i++){
                 if(onWall.length <= i) cantShow[i] = true;
                 else  cantShow[i] = false;
-            }
-            rewriteNews();
+            }rewriteNews();
         }
         if(paginCounter <=0) document.body.childNodes[3].childNodes[3].childNodes[5].style.opacity=0;
         else document.body.childNodes[3].childNodes[3].childNodes[5].style.opacity=0.8;
@@ -373,6 +369,14 @@ var domService = (function () {
     }
     function findAuthors(){
         names=[];
+        articles = articlesService.getArticles(0,articlesService.articles().length+1);
+        var articles2 =[];
+        for(var i=0; i< articles.length; i++){
+            if(articles[i].isDeleted != 'true'){
+                articles2.push(articles[i]);
+            }
+        }
+        articles = articles2;
         for(var i=0; i<articles.length; i++){
             if(!names.find(function (temp){
                     return temp == articles[i].author
@@ -392,7 +396,6 @@ var domService = (function () {
         if(UserName != ""){
             document.body.childNodes[11].style.display = "none";
             document.body.childNodes[5].style.display = "block";
-
             document.body.childNodes[5].childNodes[1].childNodes[7].childNodes[3].value = onWall[tempID].content;
             document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[3].value = onWall[tempID].title;
             document.body.childNodes[5].childNodes[1].childNodes[3].childNodes[7].value = onWall[tempID].summary;
@@ -403,8 +406,8 @@ var domService = (function () {
         if(UserName != ""){
             document.body.childNodes[11].style.display = "none";
             document.body.childNodes[3].style.display = "block";
-
             articlesService.removeArticle(onWall[tempID].id);
+            articles = articlesService.getArticles(0,articlesService.articles().length+1);
             var articles2 =[];
             for(var i=0; i< articles.length; i++){
                 if(articles[i].isDeleted != 'true'){
@@ -413,14 +416,18 @@ var domService = (function () {
             }
             articles = articles2;
             onWall = articles.slice(0,6);
-
             for(var i=0; i<6; i++) {
                 if (onWall.length <= i) cantShow[i] = true;
                 else  cantShow[i] = false;
             }
             if(onWall.length == 0){
-                for(var i=0; i<articlesService.articles.length; i++) articlesService.articles[i].isDeleted = 'false';
-                articles = articlesService.articles;
+                articles = articlesService.getArticles(0,articlesService.articles().length+1);
+                for(var i=0; i< articles.length; i++)  articles[i].isDeleted = 'false';
+                var xhrt = new XMLHttpRequest();
+                xhrt.open('POST', 'loadBase', false);
+                xhrt.setRequestHeader('Content-Type', 'application/json');
+                xhrt.send(JSON.stringify(articles));
+                articles = articlesService.getArticles(0,articlesService.articles().length+1);
                 onWall = articles.slice(0,6);
                 for(var i=0; i<6; i++) {
                     cantShow[i] = false;
@@ -461,11 +468,7 @@ var domService = (function () {
     logIn(UserName);
     rewriteNews();
     findAuthors();
-
     return{
-        rewriteNews: rewriteNews,
-        editNode: editNode,
-        logIn: logIn,
         filterNews: filterNews,
         deleteNews: deleteNews,
         nextPage:nextPage,
@@ -480,7 +483,6 @@ var domService = (function () {
         toIndex: toIndex,
         fromFullToEdit: fromFullToEdit,
         deleteFromFull: deleteFromFull,
-        someError: someError,
     }
 
 }());
