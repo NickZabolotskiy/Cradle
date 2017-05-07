@@ -1,0 +1,250 @@
+.header{
+    background-color: grey;
+    color: white;
+    min-width: 800px;
+}
+.logo{
+    background: url("http://www.fotohost.by/images/2017/02/24/logo2.png") no-repeat center center;
+    width: 800px;
+    height:150px;
+    margin: 1px auto;
+    background-size:500px;
+    display: block;
+
+}
+
+.content{
+    width: 83%;
+    float: left;
+    margin: 20px 0.3%  20px 0.1%;
+}
+.space{
+    width: 1%;
+    float: left;
+    margin: 20px 0.3% 20px 0px;
+}
+.filter{
+     width: 15%;
+     float: left;
+     background-color: #111111;
+     border-radius: 20px;
+     padding: 15px;
+     margin: 20px 0.3% 20px 0px;
+ }
+
+.block-news{
+    float: left;width: 31%;
+    margin: 3% 0%3% 1%;
+}
+.news{
+    border: 50px;
+    margin: 0% 1% 12% 1%;
+    border-radius: 10px;
+    border: inset;
+    border-color: #e5e5e5;
+    background-color: white;
+}
+.picture{
+    background-color: black;
+    width: 100%;
+    height:10vw;
+    //min-height: 85px;
+    display:block;
+}
+.text{
+    padding: 5px;
+    word-break:break-all;
+    border-bottom-style: inset;
+}
+.data{
+    float: left;
+    width: 30%;
+    padding: 10px;
+    margin: 0 .3% 0 0.1%;
+    word-break:break-all;
+}
+.autor{
+    float: left;
+    width: 30%;
+    padding: 10px;
+    margin: 0 .3% 0 0;
+    word-break:break-all;
+}
+.get-more{
+    float: left;
+    width: 38%;
+    background-color: #919191;
+    border-radius: 10px;
+    color: black;
+    margin: 3% .3% 0 0;
+}
+.get-more:hover{
+    background-color: #242424;
+    color: white;
+    border-radius: 20px;
+}
+.add-new{
+    background-color: #474747;
+    border-radius: 20px;
+}
+.add-new:hover{
+    background-color: #bdbdbd;
+    border-radius: 20px;
+
+}
+
+.footermenu{
+    width: 20%;
+    height: 70px;
+    float: left;
+    margin: 3px auto;
+    padding: 5px;
+    opacity: 0.9;
+
+}
+
+label {
+    width: 32px; /* ������ ������� */
+    height: 26px; /* ������ ������� */
+    display: block; /* ������� ������� */
+    position: relative; /* ������������� ���������������� */
+}
+input[type="checkbox"] + span {
+    position: absolute;
+    left: 0; top: 0;
+    width: 50px; height: 50px;
+    cursor: pointer;
+    background: url(http://www.fotohost.by/images/2017/03/02/cherboxes2gr.jpg)  no-repeat;
+    background-position: -8px 0px;
+    background-size:50px;
+}
+input[type="checkbox"]:checked + span  	{
+    background: url(http://www.fotohost.by/images/2017/03/02/cherboxes3gr.jpg) no-repeat;
+    background-position: 2px 0px;
+    background-size:50px;
+}
+.button-f{
+    background-color: #474747;
+    border-radius: 20px;
+    width: 50%;
+    float: left;
+    cursor: pointer;
+}
+.button-f:hover{
+    background-color: #bdbdbd;
+    border-radius: 20px;
+}
+.button-sp{
+    width: 50%;
+    float: left;
+}
+
+.handle{
+    height: 15vh;
+}
+.text{
+    height: 15vh;
+}
+
+.rewrite{
+    opacity: 0.4;
+    float: left;
+    width: 5%;
+    margin: 3% .3% 0 0;
+    cursor: pointer;
+}
+.delete{
+    opacity: 0.4;
+    float: left;
+    width: 5%;
+    margin: 3%  2% 0 1.3%;
+    cursor: pointer;
+}
+.rewrite:hover{
+    opacity: 1;
+}
+.delete:hover{
+    opacity: 1;
+}
+
+.paginbox{
+    width: 5%;
+    float: left;
+    opacity: 0.8;
+    background: #fffe85;
+    border-radius: 20px;
+    margin:  0 3% 10px 0
+}
+.paginspace{
+    width: 28%;
+    float: left;
+}
+.footer{
+    background-color: grey;
+    left: 0;
+    right:0;
+    bottom: -20px;
+    height: 70px;
+    margin: 0 0 -180px 0;
+    clear: both;
+    min-width: 800px;
+}
+.toolspace{
+    float: left;
+    width: 86%;
+}
+
+body{
+    background: url("http://www.fotohost.by/images/2017/02/24/words2.jpg");
+    opacity: 0.8;
+    min-height: 100%;
+
+}
+*{ box-sizing: border-box; }
+a{
+    font-size: 1vw;
+    align-items: center;
+}
+a2{
+    text-decoration: none;
+    color: white;
+    font-size: 1.3vw;
+}
+a3{
+    text-decoration: none;
+    color: white;
+    font-size: 3vw;
+}
+p{
+    font-size: 1vw;
+    color: black;
+}
+p2{
+    color: white;
+    font-size: 1.5vw;
+}
+p3{
+    float: left;
+}
+p4{
+    color: black;
+    font-size: 1.4vw;
+}
+
+h1{
+    font-size: 2vw;
+
+}
+h2{
+    font-size: 3vw;
+    color: white;
+}
+h3{font-size: 1.5vmin}
+select{
+    width: 10vw;
+    height: 40px;
+    font-size: 1vw;
+}
+
+
+
